@@ -1,0 +1,6 @@
+/vendor
+/node_modules
+.env
+/public/css/all.css
+/public/css/all.css.map
+.idea

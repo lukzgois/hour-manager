@@ -1,0 +1,8 @@
+@import 'partials/colors';
+@import 'partials/headings';
+
+.error {
+  color: $errorColor;
+  margin: 0.2em 0;
+  display: block
+}
