@@ -1,10 +1,13 @@
 <?php namespace HourManager\Http\Controllers;
 
+use Carbon\Carbon;
+use HourManager\Hours;
 use HourManager\Http\Requests;
 use HourManager\Http\Controllers\Controller;
 
 use HourManager\Http\Requests\CreateHourRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class HoursController
@@ -29,9 +32,20 @@ class HoursController extends Controller {
         return view('hours.create');
     }
 
+    public function index()
+    {
+        $hours = Hours::allGroupedByDate();
+
+        return view('hours.index', compact('hours'));
+    }
+
     public function store(CreateHourRequest $request)
     {
-        dd(Input::all());
+        $hour = Hours::register(\Input::all());
+        Auth::user()->hours()->save($hour);
+
+        return redirect('hours');
+
     }
 
 }

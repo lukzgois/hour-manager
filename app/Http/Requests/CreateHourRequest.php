@@ -22,8 +22,8 @@ class CreateHourRequest extends Request {
 	public function rules()
 	{
 		return [
-			'date' => 'required',
-            'time' => 'required'
+			'date' => 'required|date_format:d/m/Y',
+            'time' => 'required|date_format:H:i'
 		];
 	}
 
